@@ -32,9 +32,9 @@ extract_machine() {
 REPO="cli/cli"
 LATEST_TAG=$(gh api repos/${REPO}/releases/latest --jq .tag_name)
 
-check_tag_name ${LATEST_TAG}
+check_tag_name "${LATEST_TAG}"
 
-LATEST_GH_VERSION=$(echo ${LATEST_TAG} | sed 's/^v//')
+LATEST_GH_VERSION="$(echo "${LATEST_TAG}" | sed 's/^v//')"
 
 OS=$(extract_os)
 MACHINE=$(extract_machine)
@@ -45,7 +45,7 @@ if command -v gh >/dev/null 2>&1; then
         exit 0
     fi
 
-    INSTALL_DIR_PATH=$(dirname $(which gh))
+    INSTALL_DIR_PATH="$(dirname "$(which gh)")"
 else
     INSTALL_DIR_PATH="/usr/local/bin"
 fi
